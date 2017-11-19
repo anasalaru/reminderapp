@@ -7,13 +7,28 @@
 
     <TextView
         android:id="@+id/item_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/reminder_status_time"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginEnd="8dp"
+        android:text="Feed the cat"
+        android:textSize="16dp"
+        />
+
+    <TextView
+        android:id="@+id/reminder_status_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="In 3 days"
+        android:textSize="16dp"
+        android:layout_marginEnd="8dp"
+        />
 
 </android.support.constraint.ConstraintLayout>

@@ -31,9 +31,11 @@ class ReminderItemAdapter: RecyclerView.Adapter<ReminderItemAdapter.ReminderItem
 
     class ReminderItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         private var itemReminderTitle = itemView.findViewById<TextView>(R.id.item_title)
+//        private var itemReminderStatusTime = itemView.findViewById<TextView>(R.id.reminder_status_time)
 
         fun setItem(item: ReminderItemModel) {
             itemReminderTitle.text = item.title
+//            itemReminderStatusTime.text = item.status
         }
     }
 }
