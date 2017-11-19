@@ -1,4 +1,4 @@
-package ui
+package com.reminderapp.ui
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.anamaria.reminderapp.R
-import models.ReminderItemModel
+import com.reminderapp.models.ReminderItemModel
 
 class ReminderItemAdapter: RecyclerView.Adapter<ReminderItemAdapter.ReminderItemViewHolder>() {
     private var reminderItems = emptyList<ReminderItemModel>()

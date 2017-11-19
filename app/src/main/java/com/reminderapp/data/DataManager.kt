@@ -1,4 +1,6 @@
-import models.ReminderItemModel
+package com.reminderapp.data
+
+import com.reminderapp.models.ReminderItemModel
 
 object DataManager {
     fun provideData() =

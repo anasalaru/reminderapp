@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.anamaria.reminderapp.R
-import ui.ReminderItemAdapter
+import com.reminderapp.data.DataManager
+import com.reminderapp.ui.ReminderItemAdapter
 
 class MainActivity : AppCompatActivity() {
 
