@@ -1,11 +1,13 @@
 package com.example.anamaria.activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.anamaria.reminderapp.R
+import com.reminderapp.activities.EditReminderActivity
 import com.reminderapp.data.DataManager
+import com.reminderapp.models.ReminderItemModel
 import com.reminderapp.ui.ReminderAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -19,11 +21,19 @@ class MainActivity : AppCompatActivity() {
         reminderAdapter = ReminderAdapter(this, DataManager.provideData())
         reminder_listview.adapter = reminderAdapter
         reminder_listview.setOnItemClickListener { parent, view, position, id ->
-            editReminder(view)
+            editReminder(parent.adapter.getItem(position))
         }
     }
 
-    private fun editReminder(item: View) {
+    override fun onResume() {
+        super.onResume()
 
+       reminderAdapter.notifyDataSetChanged()
+    }
+
+    private fun editReminder(item: Any) {
+        val intent = Intent(this, EditReminderActivity::class.java)
+        intent.putExtra("reminder", (item as ReminderItemModel))
+        startActivity(intent)
     }
 }
