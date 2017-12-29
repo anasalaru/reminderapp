@@ -20,7 +20,7 @@ class EditReminderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_reminder)
 
-        reminderItem = intent.getParcelableExtra<ReminderItemModel>("reminder")
+        reminderItem = intent.getParcelableExtra("reminder")
         edit_reminder_title.setText(reminderItem.title, TextView.BufferType.EDITABLE)
     }
 

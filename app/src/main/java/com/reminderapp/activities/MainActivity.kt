@@ -1,14 +1,14 @@
 package com.example.anamaria.activities
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.support.v7.app.AppCompatActivity
 import com.example.anamaria.reminderapp.R
 import com.reminderapp.activities.EditReminderActivity
 import com.reminderapp.data.DataManager
 import com.reminderapp.models.ReminderItemModel
 import com.reminderapp.ui.ReminderAdapter
+import kotlinx.android.synthetic.main.activity_main.reminder_listview
 
 class MainActivity : AppCompatActivity() {
 
