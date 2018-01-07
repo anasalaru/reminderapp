@@ -22,7 +22,7 @@ class ReminderAdapter(private val context: Context, private var items: List<Remi
         val newItemTitle = convertViewLocal!!.findViewById<TextView>(R.id.item_title)
         newItemTitle.text = currentItem.title
 
-        return convertViewLocal!!
+        return convertViewLocal
     }
 
     override fun getItem(position: Int): ReminderItemModel = items[position]
