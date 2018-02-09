@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="editReminderTitle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:text">@string/short_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="editReminderDescription">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:text">@string/long_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

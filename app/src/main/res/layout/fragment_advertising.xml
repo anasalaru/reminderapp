@@ -8,14 +8,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Advertising Fragment"
+        android:text="@string/advertising_fragment_title"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/button_change_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click to make $$$"
+        android:text="@string/advertising_button_text"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

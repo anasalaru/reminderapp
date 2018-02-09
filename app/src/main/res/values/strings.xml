@@ -3,4 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="short_text">Apply yourself</string>
     <string name="long_text">The attributes that apply to a specific View are listed in the corresponding class reference, under XML attributes.</string>
+    <string name="advertising_fragment_title">Advertising Fragment</string>
+    <string name="advertising_button_text">Click to make $$$</string>
 </resources>
