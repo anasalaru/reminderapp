@@ -22,6 +22,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-    />
+        android:text="In 3 days"/>
 
 </android.support.constraint.ConstraintLayout>
