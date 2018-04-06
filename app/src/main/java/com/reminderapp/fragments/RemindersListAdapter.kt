@@ -25,8 +25,8 @@ class RemindersListAdapter(private val dataSet: List<ReminderItemModel>): Recycl
 class ReminderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(item: ReminderItemModel) {
         with(itemView) {
+            item_deadline.text = "In ${item.id} days"
             item_title.text = item.title
-            reminder_status_time.text = "In ${item.id} days"
         }
     }
 }

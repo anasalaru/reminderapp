@@ -10,13 +10,14 @@
         android:id="@+id/item_title"
         style="@style/itemTitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/reminder_status_time"
+        app:layout_constraintEnd_toStartOf="@+id/item_deadline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
     />
 
     <TextView
-        android:id="@+id/reminder_status_time"
+        android:id="@+id/item_deadline"
         style="@style/reminderStatusTime"
         app:layout_constraintStart_toEndOf="@id/item_title"
         app:layout_constraintBottom_toBottomOf="parent"
