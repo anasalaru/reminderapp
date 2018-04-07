@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.anamaria.reminderapp.R
-import com.reminderapp.activities.ReminderActivity
 import com.reminderapp.data.DataManager
-import com.reminderapp.ui.ReminderAdapter
 import kotlinx.android.synthetic.main.fragment_reminder_items.*
 
 class ReminderItemsFragment : Fragment() {
@@ -28,11 +26,6 @@ class ReminderItemsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        reminderAdapter = ReminderAdapter(activity, DataManager.provideData())
-//        reminder_listview.adapter = reminderAdapter
-//        reminder_listview.setOnItemClickListener { _, _, position, _ ->
-//            (activity as ReminderActivity).itemClicked(reminderAdapter.getItem(position))
-//        }
         reminders_list.layoutManager = LinearLayoutManager(activity.baseContext)
         reminders_list.adapter = RemindersListAdapter(DataManager.provideData())
 
