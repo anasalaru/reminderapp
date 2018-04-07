@@ -22,7 +22,6 @@ class ReminderActivity : AppCompatActivity() {
             fragmentTransaction.replace(R.id.main_container, fragment)
         else
             fragmentTransaction.add(R.id.main_container, fragment)
-        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 }
