@@ -4,7 +4,7 @@ import com.reminderapp.models.ReminderItemModel
 
 object DataManager {
     private var currentIndex = -1
-    private val reminderItems = listOf(ReminderItemModel(1, "pay bills"),
+    private val reminderItems = listOf(ReminderItemModel(nextIndex(), "pay bills"),
             ReminderItemModel( nextIndex(), "go to doctor"),
             ReminderItemModel( nextIndex(), "feed the cat"),
             ReminderItemModel( nextIndex(), "meet Jane"),
