@@ -12,13 +12,13 @@ import kotlinx.android.synthetic.main.fragment_edit_reminder.edit_reminder_title
 
 class EditReminderFragment: Fragment() {
 
-    lateinit private var reminderItem: ReminderItemModel
+    private lateinit var reminderItem: ReminderItemModel
 
     companion object {
-        fun newInstance(item: ReminderItemModel): Fragment {
+        fun newInstance(itemID: Int): Fragment {
             val newFragment = EditReminderFragment()
             val args = Bundle()
-            args.putParcelable("reminderItem", item)
+            args.putInt("reminderItem", itemID)
             newFragment.arguments = args
             return newFragment
         }
@@ -30,7 +30,8 @@ class EditReminderFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        reminderItem = arguments.getParcelable("reminderItem")
+        val itemID = arguments.getInt("reminderItem")
+        reminderItem = DataManager.provideData().firstOrNull { it.id == itemID } ?: ReminderItemModel(100, "errrr")
         edit_reminder_title.setText(reminderItem.title)
     }
 

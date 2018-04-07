@@ -30,8 +30,8 @@ class ReminderItemsFragment : Fragment() {
         reminders_list.layoutManager = LinearLayoutManager(activity.baseContext)
         reminders_list.adapter = RemindersListAdapter(DataManager.provideData())
         val clicklistener = object: ClickListener {
-            override fun onClick(view: View, position: Int) {
-                Toast.makeText(activity.baseContext, "Item $position clicked", Toast.LENGTH_SHORT).show()
+            override fun onClick(id: Int) {
+                editReminder(id)
             }
 
             override fun onLongClick(view: View, position: Int) {
@@ -40,8 +40,15 @@ class ReminderItemsFragment : Fragment() {
 
         }
         reminders_list.addOnItemTouchListener(RecyclerClickListener(activity, reminders_list, clicklistener))
-
     }
+
+    private fun editReminder(itemID: Int) {
+        fragmentManager.beginTransaction()
+                .add(R.id.main_container, EditReminderFragment.newInstance(itemID))
+                .addToBackStack(null)
+                .commit()
+    }
+
 
 }
 
@@ -64,7 +71,7 @@ class RecyclerClickListener(private val context: Context, private val recyclerVi
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
         val child = rv.findChildViewUnder(e.x, e.y)
         if(child != null && gestureDetector.onTouchEvent(e)) {
-            clickListener.onClick(child, rv.getChildAdapterPosition(child))
+            clickListener.onClick((recyclerView.getChildViewHolder(child) as ReminderViewHolder).data.id)
         }
         return false
     }
@@ -77,6 +84,6 @@ class RecyclerClickListener(private val context: Context, private val recyclerVi
 }
 
 interface ClickListener {
-    fun onClick(view: View, position: Int)
+    fun onClick(id: Int)
     fun onLongClick(view: View, position: Int)
 }

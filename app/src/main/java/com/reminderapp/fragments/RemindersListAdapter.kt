@@ -8,25 +8,31 @@ import com.example.anamaria.reminderapp.R
 import com.reminderapp.models.ReminderItemModel
 import kotlinx.android.synthetic.main.item_reminder.view.*
 
-class RemindersListAdapter(private val dataSet: List<ReminderItemModel>): RecyclerView.Adapter<ReminderViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolder {
+class RemindersListAdapter(val dataSet: List<ReminderItemModel>): RecyclerView.Adapter<ReminderViewHolderImpl>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReminderViewHolderImpl {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.item_reminder, parent, false)
-        return ReminderViewHolder(item)
+        return ReminderViewHolderImpl(item)
     }
 
     override fun getItemCount() = dataSet.size
 
-    override fun onBindViewHolder(holder: ReminderViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ReminderViewHolderImpl?, position: Int) {
         holder?.bind(dataSet[position])
     }
 
 }
 
-class ReminderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ReminderViewHolderImpl(itemView: View): RecyclerView.ViewHolder(itemView), ReminderViewHolder {
+    override lateinit var data: ReminderItemModel
     fun bind(item: ReminderItemModel) {
+        data = item
         with(itemView) {
             item_deadline.text = "In ${item.id} days"
             item_title.text = item.title
         }
     }
+}
+
+interface ReminderViewHolder {
+    val data: ReminderItemModel
 }

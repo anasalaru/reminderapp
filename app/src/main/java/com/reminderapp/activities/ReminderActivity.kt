@@ -4,9 +4,7 @@ import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.example.anamaria.reminderapp.R
-import com.reminderapp.fragments.EditReminderFragment
 import com.reminderapp.fragments.ReminderItemsFragment
-import com.reminderapp.models.ReminderItemModel
 
 class ReminderActivity : AppCompatActivity() {
 
@@ -26,9 +24,5 @@ class ReminderActivity : AppCompatActivity() {
             fragmentTransaction.add(R.id.main_container, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
-    }
-
-    fun itemClicked(item: ReminderItemModel) {
-        addFragment(EditReminderFragment.newInstance(item), true)
     }
 }
