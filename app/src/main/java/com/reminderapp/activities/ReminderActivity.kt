@@ -18,10 +18,19 @@ class ReminderActivity : AppCompatActivity() {
 
     private fun addFragment(fragment: Fragment, replace: Boolean) {
         val fragmentTransaction = fragmentManager.beginTransaction()
-        if(replace)
-            fragmentTransaction.replace(R.id.main_container, fragment)
-        else
-            fragmentTransaction.add(R.id.main_container, fragment)
-        fragmentTransaction.commit()
+        with(fragmentTransaction) {
+            if(replace)
+                replace(R.id.main_container, fragment)
+            else
+                add(R.id.main_container, fragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(fragmentManager.backStackEntryCount == 1) {
+            finish()
+        } else super.onBackPressed()
     }
 }

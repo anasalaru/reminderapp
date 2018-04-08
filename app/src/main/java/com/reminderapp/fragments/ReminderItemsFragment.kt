@@ -19,6 +19,10 @@ class ReminderItemsFragment : Fragment() {
         fun newInstance(): Fragment = ReminderItemsFragment()
     }
 
+    private fun updateList() {
+        reminders_list.adapter.notifyDataSetChanged()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_reminder_items, container, false)
@@ -44,12 +48,15 @@ class ReminderItemsFragment : Fragment() {
 
     private fun editReminder(itemID: Int) {
         fragmentManager.beginTransaction()
-                .add(R.id.main_container, EditReminderFragment.newInstance(itemID))
+                .replace(R.id.main_container, EditReminderFragment.newInstance(itemID))
                 .addToBackStack(null)
                 .commit()
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        updateList()
+    }
 }
 
 class RecyclerClickListener(private val context: Context, private val recyclerView: RecyclerView,
