@@ -3,6 +3,7 @@ package com.reminderapp.fragments
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
@@ -10,17 +11,18 @@ import android.widget.Toast
 
 import com.example.anamaria.reminderapp.R
 import com.reminderapp.data.DataManager
+import com.reminderapp.models.ReminderItemModel
 import kotlinx.android.synthetic.main.fragment_reminder_items.*
 
 class ReminderItemsFragment : Fragment() {
 //    lateinit private var reminderAdapter: ReminderAdapter
-
+    private lateinit var reminderDiff: ReminderListDiffCallback
     companion object {
         fun newInstance(): Fragment = ReminderItemsFragment()
     }
 
     private fun updateList() {
-        reminders_list.adapter.notifyDataSetChanged()
+        (reminders_list.adapter as RemindersListAdapter).updateList(DataManager.provideData())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +34,7 @@ class ReminderItemsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         reminders_list.layoutManager = LinearLayoutManager(activity.baseContext)
-        reminders_list.adapter = RemindersListAdapter(DataManager.provideData())
+        reminders_list.adapter = RemindersListAdapterImpl(DataManager.provideData())
         val clicklistener = object: ClickListener {
             override fun onClick(id: Int) {
                 editReminder(id)
@@ -93,4 +95,22 @@ class RecyclerClickListener(private val context: Context, private val recyclerVi
 interface ClickListener {
     fun onClick(id: Int)
     fun onLongClick(view: View, position: Int)
+}
+
+class ReminderListDiffCallback(private val oldList: List<ReminderItemModel>,
+                               private  val newList: List<ReminderItemModel>): DiffUtil.Callback() {
+
+    //decides if two objects represent the same object
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition].id == newList[newItemPosition].id
+
+    override fun getOldListSize() = oldList.size
+
+    override fun getNewListSize() = newList.size
+
+    //decides whether two items have same data or not.
+    //This method is called by DiffUtil only if areItemsTheSame() returns true.
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] == newList[newItemPosition]
+    }
 }

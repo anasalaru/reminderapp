@@ -13,6 +13,12 @@ data class ReminderItemModel(var id: Int, var title: String): Parcelable {
         parcel.writeString(title)
     }
 
+    override fun equals(other: Any?): Boolean {
+        other as ReminderItemModel
+        return id == other.id &&
+                title == other.title
+    }
+
     override fun describeContents(): Int {
         return 0
     }
@@ -26,4 +32,6 @@ data class ReminderItemModel(var id: Int, var title: String): Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }
