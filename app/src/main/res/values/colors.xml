@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="green">#77dd77</color>
     <color name="orange">#ffb347</color>
-    <color name="red">#ff6961</color>
+    <color name="pastel_red">#ff6961</color>
     <color name="mainColor">#737373</color>
+    <color name="pastel_yellow">#fdfd96</color>
 </resources>
