@@ -1,4 +1,4 @@
-package com.reminderapp.fragments
+package com.reminderapp.recyclerview
 
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
@@ -20,7 +20,7 @@ class RemindersListAdapterImpl(private val dataSet: List<ReminderItemModel>): Re
         }
     }
 
-    private fun viewHolder(parent: ViewGroup): BaseViewHolder{
+    private fun viewHolder(parent: ViewGroup): BaseViewHolder {
         val item = LayoutInflater.from(parent.context).inflate(R.layout.item_reminder, parent, false)
         return ReminderViewHolderImpl(item)
     }
@@ -48,55 +48,26 @@ class RemindersListAdapterImpl(private val dataSet: List<ReminderItemModel>): Re
 
     override fun getItemViewType(position: Int): Int =
         dataSet[position].type
-}
 
-class ReminderViewHolderImpl(itemView: View): BaseViewHolder(itemView) {
-    override lateinit var data: ReminderItemModel
-    override fun bind(item: ReminderItemModel) {
-        data = item
-        with(itemView) {
-            item_deadline.text = "In ${item.id} days"
-            item_title.text = item.title
+    private inner class ReminderViewHolderImpl(itemView: View): BaseViewHolder(itemView) {
+        override lateinit var data: ReminderItemModel
+        override fun bind(item: ReminderItemModel) {
+            data = item
+            with(itemView) {
+                item_deadline.text = "In ${item.id} days"
+                item_title.text = item.title
+            }
         }
     }
-}
 
-class ReminderViewHolderImportantImpl(itemView: View): BaseViewHolder(itemView) {
-    override lateinit var data: ReminderItemModel
-    override fun bind(item: ReminderItemModel) {
-        data = item
-        with(itemView) {
-            item_deadline.text = "In ${item.id} days"
-            item_title.text = item.title
+    private inner class ReminderViewHolderImportantImpl(itemView: View): BaseViewHolder(itemView) {
+        override lateinit var data: ReminderItemModel
+        override fun bind(item: ReminderItemModel) {
+            data = item
+            with(itemView) {
+                item_deadline.text = "In ${item.id} days"
+                item_title.text = item.title
+            }
         }
-    }
-}
-
-interface ReminderViewHolder {
-    val data: ReminderItemModel
-    fun bind(item: ReminderItemModel)
-}
-
-abstract class BaseViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), ReminderViewHolder
-
-interface RemindersListAdapter {
-    fun updateList(newList: List<ReminderItemModel>)
-}
-
-class ReminderListDiffCallback(private val oldList: List<ReminderItemModel>,
-                               private  val newList: List<ReminderItemModel>): DiffUtil.Callback() {
-
-    //decides if two objects represent the same object
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-            oldList[oldItemPosition].id == newList[newItemPosition].id
-
-    override fun getOldListSize() = oldList.size
-
-    override fun getNewListSize() = newList.size
-
-    //decides whether two items have same data or not.
-    //This method is called by DiffUtil only if areItemsTheSame() returns true.
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 }

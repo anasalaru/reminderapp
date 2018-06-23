@@ -1,14 +1,16 @@
 package com.reminderapp.fragments
 
 import android.app.Fragment
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.*
 
 import com.example.anamaria.reminderapp.R
 import com.reminderapp.data.DataManager
+import com.reminderapp.recyclerview.ClickListener
+import com.reminderapp.recyclerview.RecyclerClickListener
+import com.reminderapp.recyclerview.RemindersListAdapter
+import com.reminderapp.recyclerview.RemindersListAdapterImpl
 import kotlinx.android.synthetic.main.fragment_reminder_items.*
 
 class ReminderItemsFragment : Fragment() {
@@ -30,7 +32,7 @@ class ReminderItemsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         reminders_list.layoutManager = LinearLayoutManager(activity.baseContext)
         reminders_list.adapter = RemindersListAdapterImpl(DataManager.provideData())
-        val clicklistener = object: ClickListener {
+        val clicklistener = object : ClickListener {
             override fun onClick(id: Int) {
                 editReminder(id)
             }
@@ -51,30 +53,3 @@ class ReminderItemsFragment : Fragment() {
     }
 }
 
-class RecyclerClickListener(private val context: Context, private val recyclerView: RecyclerView,
-                            private val clickListener: ClickListener): RecyclerView.OnItemTouchListener {
-    private val gestureDetector = GestureDetector(context, object: GestureDetector.SimpleOnGestureListener() {
-//        Notified when a tap occurs with the up MotionEvent that triggered it.
-        override fun onSingleTapUp(e: MotionEvent?): Boolean {
-            return true
-        }
-    })
-
-    override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-        val child = rv.findChildViewUnder(e.x, e.y)
-        if(child != null && gestureDetector.onTouchEvent(e)) {
-            clickListener.onClick((recyclerView.getChildViewHolder(child) as ReminderViewHolder).data.id)
-        }
-        return false
-    }
-
-    override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {
-    }
-
-    override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-    }
-}
-
-interface ClickListener {
-    fun onClick(id: Int)
-}
