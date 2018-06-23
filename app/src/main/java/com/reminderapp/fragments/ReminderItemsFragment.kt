@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.Toast
 
 import com.example.anamaria.reminderapp.R
 import com.reminderapp.data.DataManager
@@ -35,11 +34,6 @@ class ReminderItemsFragment : Fragment() {
             override fun onClick(id: Int) {
                 editReminder(id)
             }
-
-            override fun onLongClick(view: View, position: Int) {
-                Toast.makeText(activity, "Item $position long tap", Toast.LENGTH_SHORT).show()
-            }
-
         }
         reminders_list.addOnItemTouchListener(RecyclerClickListener(activity, reminders_list, clicklistener))
     }
@@ -64,13 +58,6 @@ class RecyclerClickListener(private val context: Context, private val recyclerVi
         override fun onSingleTapUp(e: MotionEvent?): Boolean {
             return true
         }
-
-        override fun onLongPress(e: MotionEvent) {
-            val child = recyclerView.findChildViewUnder(e.x, e.y)
-            if(child != null) {
-                clickListener.onLongClick(child, recyclerView.getChildAdapterPosition(child))
-            }
-        }
     })
 
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
@@ -90,5 +77,4 @@ class RecyclerClickListener(private val context: Context, private val recyclerVi
 
 interface ClickListener {
     fun onClick(id: Int)
-    fun onLongClick(view: View, position: Int)
 }

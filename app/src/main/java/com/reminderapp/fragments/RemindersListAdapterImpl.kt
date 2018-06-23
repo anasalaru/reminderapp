@@ -36,7 +36,7 @@ class RemindersListAdapterImpl(private val dataSet: List<ReminderItemModel>): Re
         return when(getItemViewType(position)) {
             ModelType.REMINDER.ordinal -> (holder as ReminderViewHolderImpl).bind(dataSet[position])
             ModelType.REMINDER_IMPORTANT.ordinal -> (holder as ReminderViewHolderImportantImpl).bind(dataSet[position])
-            else -> throw IllegalArgumentException("nope.")
+            else -> throw IllegalArgumentException("invalid type")
         }
     }
 
